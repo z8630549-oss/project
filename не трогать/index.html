@@ -1,0 +1,4039 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI FUTURE 2.0</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    :root {
+      --bg: #050817;
+      --panel: #0e1529;
+      --panel2: #151e37;
+      --cyan: #56e7ff;
+      --purple: #a879ff;
+      --pink: #ff8eea;
+      --green: #63efae;
+      --red: #ff718d;
+      --white: #f7f9ff;
+      --muted: #9aa7c4;
+      --line: rgba(255,255,255,.09);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 50% -15%, rgba(99, 74, 255, .2), transparent 35%),
+        radial-gradient(circle at 10% 40%, rgba(86,231,255,.05), transparent 25%),
+        var(--bg);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ================= BACKGROUND ================= */
+
+    #stars {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -5;
+    }
+
+    .glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: .12;
+      pointer-events: none;
+      z-index: -3;
+    }
+
+    .glow.one {
+      width: 280px;
+      height: 280px;
+      background: var(--cyan);
+      top: 10%;
+      left: -100px;
+    }
+
+    .glow.two {
+      width: 320px;
+      height: 320px;
+      background: var(--purple);
+      right: -100px;
+      top: 55%;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 6%;
+      background: rgba(5,8,23,.78);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--muted);
+      font-size: 13px;
+      transition: .2s;
+    }
+
+    nav a:hover {
+      color: var(--cyan);
+    }
+
+    .language {
+      border: 1px solid var(--line);
+      background: #131d35;
+      color: white;
+      border-radius: 10px;
+      padding: 8px 10px;
+      outline: none;
+    }
+
+    /* ================= COMMON ================= */
+
+    section {
+      padding: 80px 7%;
+      scroll-margin-top: 85px;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 750px;
+      margin: 0 auto 40px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(32px, 5vw, 50px);
+      line-height: 1.08;
+      margin: 12px 0;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .gradient {
+      color: transparent;
+      background: linear-gradient(
+        90deg,
+        var(--cyan),
+        var(--purple),
+        var(--pink)
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 13px;
+      padding: 13px 18px;
+      font-weight: 800;
+      color: #05101a;
+      background: linear-gradient(
+        100deg,
+        var(--cyan),
+        var(--purple)
+      );
+      transition: .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.08);
+    }
+
+    .btn.secondary {
+      color: white;
+      background: #202d4d;
+      border: 1px solid var(--line);
+    }
+
+    .card {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(20,29,52,.96),
+          rgba(9,15,30,.97)
+        );
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      min-height: 760px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 40px;
+      padding-top: 70px;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 8vw, 88px);
+      line-height: .98;
+      letter-spacing: -5px;
+      margin: 18px 0;
+    }
+
+    .hero p {
+      max-width: 590px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .stat {
+      min-width: 110px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #131d34;
+      border: 1px solid var(--line);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--cyan);
+      font-size: 24px;
+    }
+
+    .stat small {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    /* ================= PLANET ================= */
+
+    .planet-area {
+      position: relative;
+      height: 470px;
+      display: grid;
+      place-items: center;
+    }
+
+    .orbit {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border: 1px solid rgba(167,121,255,.22);
+      border-radius: 50%;
+      animation: rotate 25s linear infinite;
+    }
+
+    .orbit::after {
+      content: "✦";
+      position: absolute;
+      top: 25px;
+      left: 55px;
+      color: var(--cyan);
+    }
+
+    .planet {
+      position: relative;
+      width: 255px;
+      height: 255px;
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          circle at 28% 23%,
+          #d9fbff 0%,
+          #6b9de8 15%,
+          #5d4ccb 46%,
+          #191c52 73%
+        );
+      box-shadow:
+        0 0 80px rgba(97,122,255,.35),
+        inset -32px -32px 55px #070a25;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .planet::before {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 92px;
+      left: -53px;
+      top: 82px;
+      border: 12px solid rgba(93,228,255,.72);
+      border-left-color: rgba(172,128,255,.65);
+      border-right-color: rgba(172,128,255,.65);
+      border-radius: 50%;
+      transform: rotate(-23deg);
+      box-shadow: 0 0 25px rgba(84,229,255,.28);
+    }
+
+    .planet::after {
+      content: "";
+      position: absolute;
+      inset: 35px;
+      border-radius: 50%;
+      background:
+        linear-gradient(
+          145deg,
+          transparent 30%,
+          rgba(255,255,255,.15),
+          transparent 70%
+        );
+    }
+
+    @keyframes float {
+      50% {
+        transform: translateY(-18px);
+      }
+    }
+
+    @keyframes rotate {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ================= MODULES ================= */
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 17px;
+    }
+
+    .module {
+      transition: .25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .module:hover {
+      transform: translateY(-5px);
+      border-color: rgba(86,231,255,.35);
+      box-shadow: 0 18px 40px rgba(0,0,0,.22);
+    }
+
+    .module-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+
+    .module h3 {
+      margin-bottom: 10px;
+    }
+
+    .module p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      min-height: 70px;
+    }
+
+    /* ================= TEACHER ================= */
+
+    .teacher-layout {
+      display: grid;
+      grid-template-columns: .78fr 1.22fr;
+      gap: 18px;
+    }
+
+    .teacher-box {
+      background:
+        radial-gradient(
+          circle at 20% 0%,
+          rgba(86,231,255,.11),
+          transparent 35%
+        ),
+        linear-gradient(145deg,#182542,#0d1529);
+    }
+
+    .teacher-avatar {
+      width: 80px;
+      height: 80px;
+      display: grid;
+      place-items: center;
+      font-size: 38px;
+      border-radius: 24px;
+      background: linear-gradient(
+        135deg,
+        var(--cyan),
+        var(--purple)
+      );
+      margin-bottom: 20px;
+      box-shadow: 0 0 35px rgba(84,229,255,.2);
+    }
+
+    .teacher-box p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 13px;
+    }
+
+    .teacher-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .teacher-list div {
+      background: #111a31;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 10px 12px;
+      color: #c9d5ef;
+      font-size: 12px;
+    }
+
+    .quick-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .quick-buttons button {
+      border: 1px solid var(--line);
+      background: #192744;
+      color: #d0dcf5;
+      border-radius: 30px;
+      padding: 8px 11px;
+      font-size: 11px;
+    }
+
+    .chat {
+      min-height: 550px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: #0b1327;
+    }
+
+    .chat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .online {
+      color: var(--green);
+      font-size: 11px;
+    }
+
+    .messages {
+      flex: 1;
+      min-height: 330px;
+      max-height: 450px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 18px;
+    }
+
+    .message {
+      max-width: 88%;
+      padding: 13px 15px;
+      border-radius: 16px;
+      line-height: 1.7;
+      font-size: 13px;
+      white-space: pre-wrap;
+    }
+
+    .message.bot {
+      align-self: flex-start;
+      background: #1a2745;
+      border-bottom-left-radius: 4px;
+    }
+
+    .message.user {
+      align-self: flex-end;
+      background: linear-gradient(
+        120deg,
+        #4658a5,
+        #6955b8
+      );
+      border-bottom-right-radius: 4px;
+    }
+
+    .chat-tools {
+      padding: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .chat-tools select,
+    .chat-tools input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #101a31;
+      color: white;
+      padding: 11px;
+      outline: none;
+    }
+
+    .chat-tools select {
+      margin-bottom: 8px;
+    }
+
+    .chat-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .chat-row input {
+      flex: 1;
+    }
+
+    .mini-btn {
+      border: 0;
+      background: #263656;
+      color: white;
+      border-radius: 10px;
+      padding: 10px 13px;
+    }
+
+    /* ================= TASKS ================= */
+
+    .task-wrap {
+      max-width: 820px;
+      margin: auto;
+    }
+
+    .task-form {
+      display: flex;
+      gap: 8px;
+      margin: 16px 0;
+    }
+
+    .task-form input {
+      flex: 1;
+      min-width: 0;
+      background: #101a31;
+      border: 1px solid var(--line);
+      color: white;
+      border-radius: 10px;
+      padding: 12px;
+      outline: none;
+    }
+
+    .task {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--line);
+      padding: 13px 0;
+      font-size: 13px;
+    }
+
+    .task span {
+      flex: 1;
+    }
+
+    .task.done span {
+      color: #7d89a2;
+      text-decoration: line-through;
+    }
+
+    .task-delete {
+      border: none;
+      background: none;
+      color: var(--red);
+      font-size: 18px;
+    }
+
+    /* ================= QUEST ================= */
+
+    .quest-card {
+      max-width: 820px;
+      margin: auto;
+    }
+
+    .quest-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .progress {
+      height: 9px;
+      background: #26314d;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 13px 0 18px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(
+        90deg,
+        var(--cyan),
+        var(--purple)
+      );
+      transition: .3s;
+    }
+
+    .mission {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .mission button {
+      border: none;
+      border-radius: 9px;
+      background: #263657;
+      color: white;
+      padding: 8px 10px;
+    }
+
+    .mission button:disabled {
+      opacity: .45;
+      cursor: default;
+    }
+
+    /* ================= ARCADE ================= */
+
+    .arcade-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 17px;
+    }
+
+    .game-card {
+      cursor: pointer;
+      transition: .23s;
+    }
+
+    .game-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(86,231,255,.4);
+      box-shadow: 0 20px 40px rgba(0,0,0,.22);
+    }
+
+    .game-icon {
+      font-size: 42px;
+      margin-bottom: 14px;
+    }
+
+    .game-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .game-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+      min-height: 58px;
+    }
+
+    .game-card .btn {
+      width: 100%;
+      margin-top: 9px;
+    }
+
+    .game-zone {
+      max-width: 850px;
+      margin: 22px auto 0;
+    }
+
+    .game-top {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      background: #131e37;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 8px 12px;
+      font-size: 11px;
+      color: var(--cyan);
+    }
+
+    .game-content {
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 15px;
+    }
+
+    .game-question {
+      text-align: center;
+      font-size: clamp(20px,4vw,30px);
+      line-height: 1.5;
+      margin: 20px 0;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .answer {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      background: #202e4d;
+      color: white;
+      text-align: left;
+      transition: .15s;
+    }
+
+    .answer:hover {
+      background: #293c63;
+      border-color: var(--cyan);
+    }
+
+    .answer.correct {
+      background: #174b42;
+      border-color: var(--green);
+    }
+
+    .answer.wrong {
+      background: #562e42;
+      border-color: var(--red);
+    }
+
+    .feedback {
+      min-height: 35px;
+      text-align: center;
+      color: var(--cyan);
+      padding: 8px;
+    }
+
+    .game-actions {
+      text-align: center;
+    }
+
+    .math-input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #0d162c;
+      color: white;
+      outline: none;
+      margin-bottom: 12px;
+    }
+
+    .memory-sequence {
+      text-align: center;
+      color: var(--cyan);
+      font-size: 32px;
+      letter-spacing: 8px;
+      margin: 25px 0;
+    }
+
+    .memory-grid {
+      max-width: 430px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 9px;
+    }
+
+    .memory-btn {
+      aspect-ratio: 1;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #1c2947;
+      color: white;
+      font-size: 20px;
+    }
+
+    .memory-btn:hover {
+      border-color: var(--cyan);
+    }
+
+    /* ================= SPEAK ================= */
+
+    .speak-card {
+      max-width: 820px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .speak-question {
+      font-size: clamp(23px,4vw,36px);
+      line-height: 1.5;
+      margin: 35px 0;
+    }
+
+    .mic {
+      width: 84px;
+      height: 84px;
+      border: 0;
+      border-radius: 50%;
+      background: linear-gradient(
+        135deg,
+        var(--cyan),
+        var(--purple)
+      );
+      color: #071019;
+      font-size: 29px;
+      box-shadow: 0 0 38px rgba(84,229,255,.2);
+    }
+
+    .mic.listening {
+      animation: pulse 1s infinite;
+    }
+
+    .speak-status {
+      min-height: 24px;
+      color: var(--muted);
+      font-size: 13px;
+      margin: 15px;
+    }
+
+    .speak-answer {
+      min-height: 32px;
+      color: var(--cyan);
+    }
+
+    @keyframes pulse {
+      50% {
+        box-shadow: 0 0 0 18px rgba(84,229,255,.06);
+      }
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      padding: 40px 7%;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* ================= REVEAL ================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: .6s;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 950px) {
+      nav a {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero p {
+        margin: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .module-grid,
+      .arcade-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .teacher-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      section {
+        padding: 55px 5%;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      .module-grid,
+      .arcade-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .answers {
+        grid-template-columns: 1fr;
+      }
+
+      .task-form {
+        flex-direction: column;
+      }
+
+      .chat-row {
+        flex-wrap: wrap;
+      }
+
+      .chat-row input {
+        min-width: 100%;
+      }
+
+      .planet-area {
+        height: 330px;
+      }
+
+      .planet {
+        width: 190px;
+        height: 190px;
+      }
+
+      .planet::before {
+        width: 285px;
+        height: 70px;
+        left: -48px;
+        top: 62px;
+      }
+
+      .orbit {
+        width: 310px;
+        height: 310px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="glow one"></div>
+<div class="glow two"></div>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+  <div class="logo">
+    AI FUTURE<span>✦</span>
+  </div>
+
+  <nav>
+    <a href="#modules">Модули</a>
+    <a href="#teacher">Teacher</a>
+    <a href="#tasks">SmartSchool</a>
+    <a href="#arcade">Arcade</a>
+    <a href="#speak">SpeakUp</a>
+  </nav>
+
+  <select class="language" id="language">
+    <option value="ru">RU</option>
+    <option value="en">EN</option>
+    <option value="uz">UZ</option>
+  </select>
+
+</header>
+
+
+<main>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+  <div>
+
+    <div class="eyebrow">
+      ✦ THE FUTURE OF LEARNING
+    </div>
+
+    <h1>
+      Учись умнее.<br>
+      <span class="gradient">
+        Создавай будущее.
+      </span>
+    </h1>
+
+    <p>
+      AI FUTURE 2.0 — современная образовательная
+      AI-платформа, где учёба превращается в
+      интерактивное приключение.
+    </p>
+
+    <div class="hero-actions">
+
+      <button
+        class="btn"
+        onclick="scrollToSection('teacher')"
+      >
+        Начать обучение →
+      </button>
+
+      <button
+        class="btn secondary"
+        onclick="scrollToSection('arcade')"
+      >
+        Играть 🎮
+      </button>
+
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+        <strong id="globalXP">0</strong>
+        <small>XP</small>
+      </div>
+
+      <div class="stat">
+        <strong id="globalLevel">1</strong>
+        <small>УРОВЕНЬ</small>
+      </div>
+
+      <div class="stat">
+        <strong id="globalWins">0</strong>
+        <small>ПОБЕД</small>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="planet-area">
+
+    <div class="orbit"></div>
+
+    <div class="planet"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= MODULES ================= -->
+
+<section id="modules">
+
+  <div class="section-title">
+
+    <div class="eyebrow">
+      AI FUTURE UNIVERSE
+    </div>
+
+    <h2>
+      Всё для учёбы
+      <span class="gradient">
+        в одном месте
+      </span>
+    </h2>
+
+    <p>
+      От AI-учителя до образовательных игр —
+      всё связано в одну систему.
+    </p>
+
+  </div>
+
+
+  <div class="module-grid">
+
+    <article class="card module">
+
+      <div class="module-icon">
+        🧠
+      </div>
+
+      <h3>
+        BrainUp AI
+      </h3>
+
+      <p>
+        Разбирай сложные темы простыми
+        словами и практикуйся.
+      </p>
+
+      <button
+        class="btn secondary"
+        onclick="askTeacher('Объясни мне сложную тему простыми словами.')"
+      >
+        Открыть
+      </button>
+
+    </article>
+
+
+    <article class="card module">
+
+      <div class="module-icon">
+        👨‍🏫
+      </div>
+
+      <h3>
+        AI Future Teacher
+      </h3>
+
+      <p>
+        Твой цифровой учитель по разным
+        школьным предметам.
+      </p>
+
+      <button
+        class="btn secondary"
+        onclick="scrollToSection('teacher')"
+      >
+        Спросить
+      </button>
+
+    </article>
+
+
+    <article class="card module">
+
+      <div class="module-icon">
+        📚
+      </div>
+
+      <h3>
+        SmartSchool
+      </h3>
+
+      <p>
+        Планируй домашние задания
+        и отслеживай прогресс.
+      </p>
+
+      <button
+        class="btn secondary"
+        onclick="scrollToSection('tasks')"
+      >
+        Открыть
+      </button>
+
+    </article>
+
+
+    <article class="card module">
+
+      <div class="module-icon">
+        ⭐
+      </div>
+
+      <h3>
+        EduQuest
+      </h3>
+
+      <p>
+        Получай XP, выполняй миссии
+        и прокачивай уровень.
+      </p>
+
+      <button
+        class="btn secondary"
+        onclick="scrollToSection('quest')"
+      >
+        Мои миссии
+      </button>
+
+    </article>
+
+
+    <article class="card module">
+
+      <div class="module-icon">
+        🎮
+      </div>
+
+      <h3>
+        AI Future Arcade
+      </h3>
+
+      <p>
+        Образовательные игры,
+        загадки и испытания.
+      </p>
+
+      <button
+        class="btn secondary"
+        onclick="scrollToSection('arcade')"
+      >
+        Играть
+      </button>
+
+    </article>
+
+
+    <article class="card module">
+
+      <div class="module-icon">
+        🎙️
+      </div>
+
+      <h3>
+        SpeakUp
+      </h3>
+
+      <p>
+        Практикуй английский с помощью
+        голосового режима.
+      </p>
+
+      <button
+        class="btn secondary"
+        onclick="scrollToSection('speak')"
+      >
+        Говорить
+      </button>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- ================= TEACHER ================= -->
+
+<section id="teacher">
+
+  <div class="section-title">
+
+    <div class="eyebrow">
+      AI FUTURE TEACHER
+    </div>
+
+    <h2>
+      Твой личный
+      <span class="gradient">
+        AI-учитель
+      </span>
+    </h2>
+
+    <p>
+      Задавай вопросы и получай пошаговые
+      объяснения.
+    </p>
+
+  </div>
+
+
+  <div class="teacher-layout">
+
+    <div class="card teacher-box">
+
+      <div class="teacher-avatar">
+        🤖
+      </div>
+
+      <h2>
+        Привет!
+      </h2>
+
+      <p>
+        Я AI Future Teacher.
+        Я помогу разобраться в теме,
+        подготовиться к уроку или
+        потренироваться.
+      </p>
+
+      <div class="teacher-list">
+
+        <div>🧠 Объясняю темы</div>
+        <div>📐 Помогаю с математикой</div>
+        <div>🇬🇧 Практикую английский</div>
+        <div>🔬 Объясняю науку</div>
+        <div>💻 Помогаю с программированием</div>
+
+      </div>
+
+      <div class="quick-buttons">
+
+        <button
+          onclick="askTeacher('Объясни дроби на простом примере.')"
+        >
+          ➗ Дроби
+        </button>
+
+        <button
+          onclick="askTeacher('Помоги мне выучить английские слова.')"
+        >
+          🇬🇧 English
+        </button>
+
+        <button
+          onclick="askTeacher('Объясни Солнечную систему.')"
+        >
+          🌍 Космос
+        </button>
+
+        <button
+          onclick="askTeacher('Задай мне мини-тест.')"
+        >
+          🧩 Тест
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="card chat">
+
+      <div class="chat-header">
+
+        <div>
+          <strong>
+            ✦ AI Future Teacher
+          </strong>
+
+          <br>
+
+          <span class="online">
+            ● Онлайн
+          </span>
+        </div>
+
+        <button
+          class="mini-btn"
+          onclick="clearChat()"
+        >
+          Очистить
+        </button>
+
+      </div>
+
+
+      <div
+        class="messages"
+        id="messages"
+      >
+
+        <div class="message bot">
+          Привет! 👋
+
+          Я AI Future Teacher.
+
+          Выбери предмет и напиши свой вопрос.
+        </div>
+
+      </div>
+
+
+      <div class="chat-tools">
+
+        <select id="subject">
+
+          <option>
+            🌟 Общий вопрос
+          </option>
+
+          <option>
+            ➗ Математика
+          </option>
+
+          <option>
+            🇬🇧 Английский
+          </option>
+
+          <option>
+            🔬 Наука
+          </option>
+
+          <option>
+            🏛️ История
+          </option>
+
+          <option>
+            💻 Информатика
+          </option>
+
+          <option>
+            📝 Домашнее задание
+          </option>
+
+        </select>
+
+
+        <div class="chat-row">
+
+          <input
+            id="teacherInput"
+            placeholder="Напиши свой вопрос..."
+          >
+
+          <button
+            class="mini-btn"
+            onclick="sendTeacherQuestion()"
+          >
+            ➤
+          </button>
+
+          <button
+            class="mini-btn"
+            onclick="teacherVoice()"
+          >
+            🎙️
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= TASKS ================= -->
+
+<section id="tasks">
+
+  <div class="section-title">
+
+    <div class="eyebrow">
+      SMARTSCHOOL
+    </div>
+
+    <h2>
+      Твоя учебная
+      <span class="gradient">
+        система
+      </span>
+    </h2>
+
+    <p>
+      Добавляй задания и отмечай выполненное.
+    </p>
+
+  </div>
+
+
+  <div class="card task-wrap">
+
+    <h3>
+      📋 Домашние задания
+    </h3>
+
+    <div class="task-form">
+
+      <input
+        id="taskInput"
+        placeholder="Например: выучить 10 английских слов"
+      >
+
+      <button
+        class="btn"
+        onclick="addTask()"
+      >
+        Добавить
+      </button>
+
+    </div>
+
+    <div id="taskList"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= QUEST ================= -->
+
+<section id="quest">
+
+  <div class="section-title">
+
+    <div class="eyebrow">
+      LEVEL UP
+    </div>
+
+    <h2>
+      Edu<span class="gradient">
+        Quest
+      </span>
+    </h2>
+
+    <p>
+      Выполняй миссии и получай XP.
+    </p>
+
+  </div>
+
+
+  <div class="card quest-card">
+
+    <div class="quest-head">
+
+      <h3>
+        ⭐ Твой прогресс
+      </h3>
+
+      <strong id="xpText">
+        0 / 100 XP
+      </strong>
+
+    </div>
+
+
+    <div class="progress">
+      <div
+        class="progress-bar"
+        id="xpBar"
+      ></div>
+    </div>
+
+
+    <div class="mission">
+
+      <span>
+        📖 Изучи новую тему · +20 XP
+      </span>
+
+      <button
+        onclick="completeMission('learn')"
+      >
+        Выполнено
+      </button>
+
+    </div>
+
+
+    <div class="mission">
+
+      <span>
+        🧠 Реши задачу · +20 XP
+      </span>
+
+      <button
+        onclick="completeMission('solve')"
+      >
+        Выполнено
+      </button>
+
+    </div>
+
+
+    <div class="mission">
+
+      <span>
+        🗣️ Практикуй английский · +20 XP
+      </span>
+
+      <button
+        onclick="completeMission('english')"
+      >
+        Выполнено
+      </button>
+
+    </div>
+
+
+    <div class="mission">
+
+      <span>
+        📝 Выполни домашнее задание · +20 XP
+      </span>
+
+      <button
+        onclick="completeMission('homework')"
+      >
+        Выполнено
+      </button>
+
+    </div>
+
+
+    <div class="mission">
+
+      <span>
+        👨‍🏫 Задай вопрос AI Teacher · +20 XP
+      </span>
+
+      <button
+        onclick="completeMission('teacher')"
+      >
+        Выполнено
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= ARCADE ================= -->
+
+<section id="arcade">
+
+  <div class="section-title">
+
+    <div class="eyebrow">
+      LEARN · PLAY · LEVEL UP
+    </div>
+
+    <h2>
+      AI FUTURE
+      <span class="gradient">
+        ARCADE
+      </span>
+    </h2>
+
+    <p>
+      Учёба превращается в игру.
+    </p>
+
+  </div>
+
+
+  <div class="arcade-grid">
+
+
+    <article
+      class="card game-card"
+      onclick="startGame('space')"
+    >
+
+      <div class="game-icon">
+        🚀
+      </div>
+
+      <h3>
+        Space Quiz
+      </h3>
+
+      <p>
+        Космос, математика,
+        наука и общие знания.
+      </p>
+
+      <button class="btn">
+        Играть →
+      </button>
+
+    </article>
+
+
+    <article
+      class="card game-card"
+      onclick="startGame('escape')"
+    >
+
+      <div class="game-icon">
+        🔐
+      </div>
+
+      <h3>
+        Brain Escape
+      </h3>
+
+      <p>
+        Логические загадки
+        и головоломки.
+      </p>
+
+      <button class="btn">
+        Играть →
+      </button>
+
+    </article>
+
+
+    <article
+      class="card game-card"
+      onclick="startGame('word')"
+    >
+
+      <div class="game-icon">
+        🗣️
+      </div>
+
+      <h3>
+        Word Hunter
+      </h3>
+
+      <p>
+        Угадывай перевод
+        английских слов.
+      </p>
+
+      <button class="btn">
+        Играть →
+      </button>
+
+    </article>
+
+
+    <article
+      class="card game-card"
+      onclick="startGame('science')"
+    >
+
+      <div class="game-icon">
+        🧪
+      </div>
+
+      <h3>
+        Science Lab
+      </h3>
+
+      <p>
+        Проверяй научные
+        знания.
+      </p>
+
+      <button class="btn">
+        Играть →
+      </button>
+
+    </article>
+
+
+    <article
+      class="card game-card"
+      onclick="startGame('memory')"
+    >
+
+      <div class="game-icon">
+        🧩
+      </div>
+
+      <h3>
+        Memory Matrix
+      </h3>
+
+      <p>
+        Запоминай последовательности.
+      </p>
+
+      <button class="btn">
+        Играть →
+      </button>
+
+    </article>
+
+
+    <article
+      class="card game-card"
+      onclick="startGame('math')"
+    >
+
+      <div class="game-icon">
+        ⚡
+      </div>
+
+      <h3>
+        Math Rush
+      </h3>
+
+      <p>
+        Решай примеры
+        на скорость.
+      </p>
+
+      <button class="btn">
+        Играть →
+      </button>
+
+    </article>
+
+  </div>
+
+
+  <div class="card game-zone">
+
+    <div class="game-top">
+
+      <span
+        class="pill"
+        id="gameStatus"
+      >
+        READY
+      </span>
+
+      <span
+        class="pill"
+        id="gameScore"
+      >
+        Очки: 0
+      </span>
+
+      <span
+        class="pill"
+        id="gameTimer"
+      >
+        ⏱ —
+      </span>
+
+    </div>
+
+
+    <div
+      class="game-content"
+      id="gameContent"
+    >
+
+      <div style="text-align:center">
+
+        <div style="font-size:72px">
+          🎮
+        </div>
+
+        <h3>
+          Выбери игру
+        </h3>
+
+        <p style="color:var(--muted)">
+          И начни своё приключение.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="feedback"
+      id="feedback"
+    ></div>
+
+
+    <div
+      class="game-actions"
+      id="gameActions"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= SPEAKUP ================= -->
+
+<section id="speak">
+
+  <div class="section-title">
+
+    <div class="eyebrow">
+      SPEAKUP AI
+    </div>
+
+    <h2>
+      Let's
+      <span class="gradient">
+        speak English!
+      </span>
+    </h2>
+
+    <p>
+      Практикуй разговорный английский.
+    </p>
+
+  </div>
+
+
+  <div class="card speak-card">
+
+    <div class="eyebrow">
+      TODAY'S QUESTION
+    </div>
+
+    <div
+      class="speak-question"
+      id="speakQuestion"
+    >
+      What is your favorite subject at school?
+    </div>
+
+
+    <button
+      class="mic"
+      id="mic"
+      onclick="startSpeaking()"
+    >
+      🎙️
+    </button>
+
+
+    <div
+      class="speak-status"
+      id="speakStatus"
+    >
+      Нажми на микрофон и отвечай.
+    </div>
+
+
+    <div
+      class="speak-answer"
+      id="speakAnswer"
+    ></div>
+
+
+    <div
+      class="hero-actions"
+      style="justify-content:center"
+    >
+
+      <button
+        class="btn secondary"
+        onclick="speakQuestion()"
+      >
+        🔊 Послушать
+      </button>
+
+      <button
+        class="btn secondary"
+        onclick="nextSpeakQuestion()"
+      >
+        Следующий вопрос →
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <div class="logo">
+    AI FUTURE<span>✦</span>
+  </div>
+
+  <p>
+    AI FUTURE 2.0 · Learning Beyond Limits
+  </p>
+
+  <p>
+    Учись. Играй. Исследуй. Создавай. 🚀
+  </p>
+
+</footer>
+
+
+<script>
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+
+function scrollToSection(id) {
+  const section = document.getElementById(id);
+
+  if (section) {
+    section.scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+}
+
+
+/* ============================================================
+   STAR FIELD
+============================================================ */
+
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+
+let stars = [];
+
+function resizeCanvas() {
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  stars = Array.from(
+    { length: 140 },
+    () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.5 + .2,
+      speed: Math.random() * .25 + .04,
+      alpha: Math.random() * .7 + .2
+    })
+  );
+}
+
+function animateStars() {
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  stars.forEach(star => {
+
+    star.y -= star.speed;
+
+    if (star.y < 0) {
+      star.y = canvas.height;
+    }
+
+    ctx.globalAlpha = star.alpha;
+    ctx.fillStyle = "#b8dfff";
+
+    ctx.beginPath();
+    ctx.arc(
+      star.x,
+      star.y,
+      star.r,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+  });
+
+  ctx.globalAlpha = 1;
+
+  requestAnimationFrame(animateStars);
+}
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+resizeCanvas();
+animateStars();
+
+
+/* ============================================================
+   GLOBAL PLAYER DATA
+============================================================ */
+
+let totalXP =
+  Number(localStorage.getItem("ai_future_xp") || 0);
+
+let wins =
+  Number(localStorage.getItem("ai_future_wins") || 0);
+
+let missions =
+  JSON.parse(
+    localStorage.getItem("ai_future_missions") || "[]"
+  );
+
+
+function savePlayer() {
+
+  localStorage.setItem(
+    "ai_future_xp",
+    totalXP
+  );
+
+  localStorage.setItem(
+    "ai_future_wins",
+    wins
+  );
+
+  localStorage.setItem(
+    "ai_future_missions",
+    JSON.stringify(missions)
+  );
+}
+
+
+function updatePlayer() {
+
+  document.getElementById("globalXP").textContent =
+    totalXP;
+
+  document.getElementById("globalLevel").textContent =
+    Math.floor(totalXP / 100) + 1;
+
+  document.getElementById("globalWins").textContent =
+    wins;
+
+  const progress =
+    totalXP % 100;
+
+  document.getElementById("xpText").textContent =
+    progress + " / 100 XP";
+
+  document.getElementById("xpBar").style.width =
+    progress + "%";
+
+  const missionKeys = [
+    "learn",
+    "solve",
+    "english",
+    "homework",
+    "teacher"
+  ];
+
+  document
+    .querySelectorAll(".mission button")
+    .forEach((button, index) => {
+
+      if (
+        missions.includes(
+          missionKeys[index]
+        )
+      ) {
+
+        button.disabled = true;
+        button.textContent = "✓ Готово";
+
+      }
+
+    });
+
+}
+
+
+function addXP(amount) {
+
+  if (!Number.isFinite(amount) || amount <= 0) {
+    return;
+  }
+
+  totalXP += Math.floor(amount);
+
+  savePlayer();
+  updatePlayer();
+
+}
+
+
+function completeMission(key) {
+
+  if (missions.includes(key)) {
+    return;
+  }
+
+  missions.push(key);
+
+  totalXP += 20;
+
+  savePlayer();
+  updatePlayer();
+
+}
+
+updatePlayer();
+
+
+/* ============================================================
+   SMARTSCHOOL
+============================================================ */
+
+let tasks =
+  JSON.parse(
+    localStorage.getItem("ai_future_tasks") || "[]"
+  );
+
+
+function saveTasks() {
+
+  localStorage.setItem(
+    "ai_future_tasks",
+    JSON.stringify(tasks)
+  );
+
+}
+
+
+function renderTasks() {
+
+  const list =
+    document.getElementById("taskList");
+
+  list.innerHTML = "";
+
+  if (!tasks.length) {
+
+    list.innerHTML = `
+      <p style="color:var(--muted);font-size:13px">
+        Пока нет заданий. Добавь своё первое ✨
+      </p>
+    `;
+
+    return;
+  }
+
+  tasks.forEach((task, index) => {
+
+    const row =
+      document.createElement("div");
+
+    row.className =
+      "task" +
+      (task.done ? " done" : "");
+
+    const checkbox =
+      document.createElement("input");
+
+    checkbox.type = "checkbox";
+    checkbox.checked = task.done;
+
+    checkbox.addEventListener(
+      "change",
+      () => {
+
+        if (
+          !task.done &&
+          checkbox.checked
+        ) {
+
+          completeMission(
+            "homework"
+          );
+
+        }
+
+        task.done =
+          checkbox.checked;
+
+        saveTasks();
+        renderTasks();
+
+      }
+    );
+
+
+    const span =
+      document.createElement("span");
+
+    span.textContent =
+      task.text;
+
+
+    const deleteButton =
+      document.createElement("button");
+
+    deleteButton.className =
+      "task-delete";
+
+    deleteButton.textContent =
+      "×";
+
+    deleteButton.onclick =
+      () => {
+
+        tasks.splice(
+          index,
+          1
+        );
+
+        saveTasks();
+        renderTasks();
+
+      };
+
+
+    row.append(
+      checkbox,
+      span,
+      deleteButton
+    );
+
+    list.appendChild(row);
+
+  });
+
+}
+
+
+function addTask() {
+
+  const input =
+    document.getElementById(
+      "taskInput"
+    );
+
+  const text =
+    input.value.trim();
+
+  if (!text) {
+    return;
+  }
+
+  tasks.push({
+    text,
+    done: false
+  });
+
+  input.value = "";
+
+  saveTasks();
+  renderTasks();
+
+}
+
+
+document
+  .getElementById("taskInput")
+  .addEventListener(
+    "keydown",
+    event => {
+
+      if (event.key === "Enter") {
+        addTask();
+      }
+
+    }
+  );
+
+renderTasks();
+
+
+/* ============================================================
+   TEACHER
+============================================================ */
+
+const messages =
+  document.getElementById("messages");
+
+
+function addMessage(
+  text,
+  type = "bot"
+) {
+
+  const div =
+    document.createElement("div");
+
+  div.className =
+    "message " + type;
+
+  div.textContent =
+    text;
+
+  messages.appendChild(div);
+
+  messages.scrollTop =
+    messages.scrollHeight;
+
+}
+
+
+function clearChat() {
+
+  messages.innerHTML = "";
+
+  addMessage(
+    "Чат очищен! 👋\n\nНапиши новый вопрос."
+  );
+
+}
+
+
+function askTeacher(text) {
+
+  const input =
+    document.getElementById(
+      "teacherInput"
+    );
+
+  input.value = text;
+
+  scrollToSection("teacher");
+
+  setTimeout(() => {
+    input.focus();
+  }, 300);
+
+}
+
+
+function teacherAnswer(
+  subject,
+  question
+) {
+
+  const q =
+    question.toLowerCase();
+
+  const s =
+    subject.toLowerCase();
+
+
+  if (
+    q.includes("тест") ||
+    q.includes("провер")
+  ) {
+
+    return `Мини-тест 🧩
+
+Почему важно не просто получить ответ,
+а понять способ решения?
+
+Напиши ответ своими словами.`;
+
+  }
+
+
+  if (
+    s.includes("математ") ||
+    /дроб|процент|уравнен|задач|числ|умнож|делен/.test(q)
+  ) {
+
+    if (q.includes("дроб")) {
+
+      return `Разберём дроби! ➗
+
+Представь пиццу,
+разделённую на 4 равные части.
+
+1/4 означает,
+что мы взяли одну из четырёх частей.
+
+1 — числитель.
+4 — знаменатель.
+
+Например:
+
+1/4 + 2/4 = 3/4
+
+Попробуй:
+
+2/4 + 1/4 = ?`;
+
+    }
+
+
+    if (q.includes("процент")) {
+
+      return `Процент — это одна сотая часть.
+
+25% = 0,25
+
+Например:
+
+25% от 100 = 25
+
+Потому что:
+
+100 × 0,25 = 25
+
+Попробуй:
+
+10% от 80 = ?`;
+
+    }
+
+
+    return `Давай решим задачу по шагам! ➗
+
+1. Найдём известные данные.
+2. Определим вопрос.
+3. Выберем действие.
+4. Выполним вычисления.
+5. Проверим ответ.
+
+Пришли конкретное условие задачи.`;
+
+  }
+
+
+  if (
+    s.includes("англий") ||
+    /english|англий|слова|перевод|граммат/.test(q)
+  ) {
+
+    return `Let's learn English! 🇬🇧
+
+Полезные фразы:
+
+I think... — Я думаю...
+
+Could you explain it? —
+Можете это объяснить?
+
+I don't understand yet. —
+Я пока не понимаю.
+
+Can you give me an example? —
+Можете привести пример?
+
+Попробуй составить одно предложение.`;
+
+  }
+
+
+  if (
+    s.includes("наука") ||
+    /космос|планет|физик|биолог|днк|энерг|вода/.test(q)
+  ) {
+
+    return `Давай исследовать! 🔬
+
+Любую научную тему можно разобрать
+через четыре вопроса:
+
+1. Что это?
+2. Как это работает?
+3. Почему это происходит?
+4. Какой есть пример?
+
+Назови конкретную тему.`;
+
+  }
+
+
+  if (
+    s.includes("история") ||
+    /истор|древн|цивилиз|артефакт/.test(q)
+  ) {
+
+    return `Изучим историю как расследование! 🏛️
+
+Сначала выясним:
+
+• Когда?
+• Где?
+• Кто?
+• Что произошло?
+• Почему это важно?
+
+Напиши событие или эпоху.`;
+
+  }
+
+
+  if (
+    s.includes("информ") ||
+    /код|html|css|javascript|программ|сайт/.test(q)
+  ) {
+
+    return `Программирование 💻
+
+HTML — структура страницы.
+
+CSS — внешний вид.
+
+JavaScript — действия и интерактивность.
+
+Например:
+
+HTML → кнопка
+
+CSS → красивая кнопка
+
+JavaScript → кнопка работает
+
+Напиши, что хочешь создать.`;
+
+  }
+
+
+  if (
+    s.includes("домаш")
+  ) {
+
+    return `Давай разберём домашнее задание! 📝
+
+Я помогу:
+
+1. Понять условие.
+2. Найти первый шаг.
+3. Разобрать пример.
+4. Проверить твою попытку.
+
+Пришли само задание.`;
+
+  }
+
+
+  return `Интересный вопрос! 🌟
+
+Давай разберём его по шагам.
+
+Сначала определим главную идею.
+
+Потом посмотрим на пример.
+
+После этого проверим,
+как ты понял тему.
+
+Добавь немного подробностей,
+и я помогу точнее.`;
+
+}
+
+
+function sendTeacherQuestion() {
+
+  const input =
+    document.getElementById(
+      "teacherInput"
+    );
+
+  const question =
+    input.value.trim();
+
+  if (!question) {
+    return;
+  }
+
+  const subject =
+    document.getElementById(
+      "subject"
+    ).value;
+
+
+  addMessage(
+    question,
+    "user"
+  );
+
+  input.value = "";
+
+
+  completeMission(
+    "teacher"
+  );
+
+
+  setTimeout(() => {
+
+    addMessage(
+      teacherAnswer(
+        subject,
+        question
+      )
+    );
+
+  }, 350);
+
+}
+
+
+document
+  .getElementById("teacherInput")
+  .addEventListener(
+    "keydown",
+    event => {
+
+      if (event.key === "Enter") {
+        sendTeacherQuestion();
+      }
+
+    }
+  );
+
+
+function teacherVoice() {
+
+  const SpeechRecognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+  if (!SpeechRecognition) {
+
+    addMessage(
+      "Голосовой ввод не поддерживается. Используй актуальный Chrome или Edge."
+    );
+
+    return;
+  }
+
+  const recognition =
+    new SpeechRecognition();
+
+  recognition.lang =
+    "ru-RU";
+
+  recognition.interimResults =
+    false;
+
+
+  addMessage(
+    "🎙️ Слушаю..."
+  );
+
+
+  recognition.onresult =
+    event => {
+
+      document.getElementById(
+        "teacherInput"
+      ).value =
+        event.results[0][0].transcript;
+
+    };
+
+
+  recognition.onerror =
+    () => {
+
+      addMessage(
+        "Не получилось распознать речь. Проверь разрешение микрофона."
+      );
+
+    };
+
+
+  recognition.start();
+
+}
+
+
+/* ============================================================
+   ARCADE
+============================================================ */
+
+const gameBanks = {
+
+  space: [
+
+    [
+      "Сколько будет 12 × 8?",
+      ["86","96","108","88"],
+      1
+    ],
+
+    [
+      "Какая планета называется Красной?",
+      ["Венера","Марс","Юпитер","Сатурн"],
+      1
+    ],
+
+    [
+      "Сколько сторон у шестиугольника?",
+      ["5","6","7","8"],
+      1
+    ],
+
+    [
+      "Какой газ нужен человеку для дыхания?",
+      ["Азот","Гелий","Кислород","Водород"],
+      2
+    ],
+
+    [
+      "Сколько минут в двух часах?",
+      ["100","110","120","140"],
+      2
+    ],
+
+    [
+      "Какая звезда находится в центре Солнечной системы?",
+      ["Сириус","Солнце","Вега","Полярная"],
+      1
+    ],
+
+    [
+      "Чему равен квадрат числа 9?",
+      ["18","72","81","99"],
+      2
+    ]
+
+  ],
+
+
+  escape: [
+
+    [
+      "Продолжи ряд: 2, 4, 8, 16...",
+      ["18","24","30","32"],
+      3
+    ],
+
+    [
+      "У Маши было 3 яблока. Она отдала 1 и получила 4. Сколько стало?",
+      ["5","6","7","8"],
+      1
+    ],
+
+    [
+      "Что тяжелее: 1 кг железа или 1 кг ваты?",
+      ["Железо","Вата","Одинаково","Неизвестно"],
+      2
+    ],
+
+    [
+      "У квадрата 4 угла. Сколько углов у 3 квадратов?",
+      ["8","10","12","16"],
+      2
+    ],
+
+    [
+      "Какое число лишнее: 3, 6, 9, 11, 12?",
+      ["3","9","11","12"],
+      2
+    ]
+
+  ],
+
+
+  word: [
+
+    [
+      "Apple",
+      ["Апельсин","Яблоко","Груша","Слива"],
+      1
+    ],
+
+    [
+      "Brave",
+      ["Смелый","Усталый","Тихий","Медленный"],
+      0
+    ],
+
+    [
+      "Journey",
+      ["Путешествие","Окно","Знание","Утро"],
+      0
+    ],
+
+    [
+      "Improve",
+      ["Забывать","Улучшать","Закрывать","Рисовать"],
+      1
+    ],
+
+    [
+      "Curious",
+      ["Любопытный","Грустный","Голодный","Сонный"],
+      0
+    ],
+
+    [
+      "Knowledge",
+      ["Скорость","Здоровье","Знание","Дружба"],
+      2
+    ],
+
+    [
+      "Achieve",
+      ["Достигать","Покупать","Прыгать","Забывать"],
+      0
+    ]
+
+  ],
+
+
+  science: [
+
+    [
+      "Откуда растения получают энергию для фотосинтеза?",
+      ["От Луны","От солнечного света","От ветра","От почвы"],
+      1
+    ],
+
+    [
+      "При какой температуре вода замерзает при обычном давлении?",
+      ["0°C","10°C","50°C","100°C"],
+      0
+    ],
+
+    [
+      "Какая планета крупнейшая?",
+      ["Земля","Марс","Юпитер","Меркурий"],
+      2
+    ],
+
+    [
+      "Какой орган перекачивает кровь?",
+      ["Лёгкие","Сердце","Печень","Мозг"],
+      1
+    ],
+
+    [
+      "Как называется переход жидкости в газ?",
+      ["Замерзание","Конденсация","Испарение","Плавление"],
+      2
+    ]
+
+  ]
+
+};
+
+
+let currentGame = "";
+let currentQuestion = 0;
+let currentScore = 0;
+let currentCorrect = 0;
+let timer = null;
+
+
+function startGame(game) {
+
+  clearInterval(timer);
+
+  currentGame = game;
+  currentQuestion = 0;
+  currentScore = 0;
+  currentCorrect = 0;
+
+  scrollToSection("arcade");
+
+  document.getElementById(
+    "gameStatus"
+  ).textContent =
+    "ИГРА ИДЁТ";
+
+  document.getElementById(
+    "gameScore"
+  ).textContent =
+    "Очки: 0";
+
+  document.getElementById(
+    "gameTimer"
+  ).textContent =
+    "⏱ —";
+
+  document.getElementById(
+    "feedback"
+  ).textContent = "";
+
+  document.getElementById(
+    "gameActions"
+  ).innerHTML = "";
+
+
+  if (game === "memory") {
+
+    startMemory();
+
+    return;
+  }
+
+
+  if (game === "math") {
+
+    startMath();
+
+    return;
+  }
+
+
+  nextQuizQuestion();
+
+}
+
+
+function nextQuizQuestion() {
+
+  const bank =
+    gameBanks[currentGame];
+
+  if (
+    currentQuestion >=
+    bank.length
+  ) {
+
+    finishQuiz();
+
+    return;
+
+  }
+
+
+  const item =
+    bank[currentQuestion];
+
+  currentQuestion++;
+
+
+  const content =
+    document.getElementById(
+      "gameContent"
+    );
+
+  content.innerHTML = "";
+
+
+  document.getElementById(
+    "gameStatus"
+  ).textContent =
+    `ВОПРОС ${currentQuestion} / ${bank.length}`;
+
+
+  const question =
+    document.createElement("div");
+
+  question.className =
+    "game-question";
+
+  question.textContent =
+    item[0];
+
+
+  const answers =
+    document.createElement("div");
+
+  answers.className =
+    "answers";
+
+
+  item[1].forEach(
+    (answer, index) => {
+
+      const button =
+        document.createElement("button");
+
+      button.className =
+        "answer";
+
+      button.textContent =
+        `${index + 1}. ${answer}`;
+
+      button.onclick =
+        () => {
+
+          chooseAnswer(
+            index,
+            item[2],
+            answers
+          );
+
+        };
+
+      answers.appendChild(button);
+
+    }
+  );
+
+
+  content.append(
+    question,
+    answers
+  );
+
+}
+
+
+function chooseAnswer(
+  choice,
+  correct,
+  container
+) {
+
+  if (container.dataset.done) {
+    return;
+  }
+
+  container.dataset.done =
+    "true";
+
+
+  Array.from(
+    container.children
+  ).forEach(
+    (button, index) => {
+
+      button.disabled = true;
+
+      if (index === correct) {
+        button.classList.add(
+          "correct"
+        );
+      }
+
+      if (
+        index === choice &&
+        choice !== correct
+      ) {
+        button.classList.add(
+          "wrong"
+        );
+      }
+
+    }
+  );
+
+
+  if (choice === correct) {
+
+    currentScore += 10;
+    currentCorrect++;
+
+    document.getElementById(
+      "feedback"
+    ).textContent =
+      "✨ Правильно! +10 очков";
+
+  } else {
+
+    document.getElementById(
+      "feedback"
+    ).textContent =
+      "Почти! Правильный ответ подсвечен.";
+
+  }
+
+
+  document.getElementById(
+    "gameScore"
+  ).textContent =
+    `Очки: ${currentScore}`;
+
+
+  const nextButton =
+    document.createElement("button");
+
+  nextButton.className =
+    "btn";
+
+  nextButton.textContent =
+    currentQuestion >=
+    gameBanks[currentGame].length
+      ? "Результат →"
+      : "Следующий вопрос →";
+
+  nextButton.onclick =
+    nextQuizQuestion;
+
+
+  document.getElementById(
+    "gameActions"
+  ).innerHTML = "";
+
+  document.getElementById(
+    "gameActions"
+  ).appendChild(
+    nextButton
+  );
+
+}
+
+
+function finishQuiz() {
+
+  const perfect =
+    currentCorrect ===
+    gameBanks[currentGame].length;
+
+  const bonus =
+    perfect ? 20 : 0;
+
+  const earned =
+    currentScore + bonus;
+
+  addXP(earned);
+
+  wins++;
+
+  savePlayer();
+  updatePlayer();
+
+
+  document.getElementById(
+    "gameStatus"
+  ).textContent =
+    "МИССИЯ ЗАВЕРШЕНА";
+
+
+  document.getElementById(
+    "gameContent"
+  ).innerHTML = `
+
+    <div style="text-align:center">
+
+      <div style="font-size:70px">
+        🏆
+      </div>
+
+      <h2>
+        Отличная работа!
+      </h2>
+
+      <p style="color:var(--muted);margin:12px 0">
+        Правильных ответов:
+        ${currentCorrect}
+        из
+        ${gameBanks[currentGame].length}
+      </p>
+
+      <h2 class="gradient">
+        +${earned} XP
+      </h2>
+
+      <p style="color:var(--muted)">
+        ${
+          perfect
+            ? "Без ошибок! Бонус +20 XP 🔥"
+            : "Продолжай тренироваться!"
+        }
+      </p>
+
+    </div>
+  `;
+
+
+  document.getElementById(
+    "gameActions"
+  ).innerHTML = `
+
+    <button
+      class="btn"
+      onclick="startGame(currentGame)"
+    >
+      Играть ещё ↻
+    </button>
+
+  `;
+
+}
+
+
+/* ============================================================
+   MEMORY MATRIX
+============================================================ */
+
+function startMemory() {
+
+  let round = 1;
+  let sequence = [];
+  let player = [];
+  let locked = true;
+
+
+  const content =
+    document.getElementById(
+      "gameContent"
+    );
+
+  content.innerHTML = `
+
+    <div class="game-question">
+      Запомни последовательность
+    </div>
+
+    <div
+      id="memorySequence"
+      class="memory-sequence"
+    >
+      ?
+    </div>
+
+    <div
+      id="memoryGrid"
+      class="memory-grid"
+    ></div>
+
+  `;
+
+
+  const grid =
+    document.getElementById(
+      "memoryGrid"
+    );
+
+
+  for (let i = 1; i <= 9; i++) {
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "memory-btn";
+
+    button.textContent =
+      i;
+
+
+    button.onclick =
+      () => {
+
+        if (locked) {
+          return;
+        }
+
+
+        player.push(i);
+
+
+        if (
+          player[player.length - 1] !==
+          sequence[player.length - 1]
+        ) {
+
+          locked = true;
+
+          document.getElementById(
+            "feedback"
+          ).textContent =
+            "❌ Ошибка! Тренировка завершена.";
+
+          finishMemory();
+
+          return;
+
+        }
+
+
+        if (
+          player.length ===
+          sequence.length
+        ) {
+
+          locked = true;
+
+          currentScore +=
+            round * 10;
+
+          document.getElementById(
+            "gameScore"
+          ).textContent =
+            `Очки: ${currentScore}`;
+
+          document.getElementById(
+            "feedback"
+          ).textContent =
+            "✨ Идеально! Следующий раунд...";
+
+          setTimeout(
+            () => {
+
+              round++;
+              memoryRound();
+
+            },
+            800
+          );
+
+        }
+
+      };
+
+
+    grid.appendChild(button);
+
+  }
+
+
+  function memoryRound() {
+
+    player = [];
+
+    sequence =
+      Array.from(
+        {
+          length:
+            Math.min(
+              round + 2,
+              8
+            )
+        },
+        () =>
+          Math.floor(
+            Math.random() * 9
+          ) + 1
+      );
+
+
+    document.getElementById(
+      "gameStatus"
+    ).textContent =
+      `РАУНД ${round}`;
+
+
+    document.getElementById(
+      "gameTimer"
+    ).textContent =
+      "🧠 Запоминай";
+
+
+    document.getElementById(
+      "memorySequence"
+    ).textContent =
+      sequence.join(" · ");
+
+
+    locked = true;
+
+
+    setTimeout(
+      () => {
+
+        document.getElementById(
+          "memorySequence"
+        ).textContent =
+          "? ? ?";
+
+        locked = false;
+
+        document.getElementById(
+          "feedback"
+        ).textContent =
+          "Теперь повтори последовательность.";
+
+      },
+      1300 + sequence.length * 300
+    );
+
+  }
+
+
+  function finishMemory() {
+
+    addXP(
+      currentScore
+    );
+
+    wins++;
+
+    savePlayer();
+    updatePlayer();
+
+
+    content.innerHTML = `
+
+      <div style="text-align:center">
+
+        <div style="font-size:65px">
+          🧠
+        </div>
+
+        <h2>
+          Тренировка завершена!
+        </h2>
+
+        <p style="color:var(--muted)">
+          Твой результат:
+          ${currentScore}
+        </p>
+
+        <h2 class="gradient">
+          +${currentScore} XP
+        </h2>
+
+      </div>
+
+    `;
+
+
+    document.getElementById(
+      "gameActions"
+    ).innerHTML = `
+
+      <button
+        class="btn"
+        onclick="startGame('memory')"
+      >
+        Играть ещё ↻
+      </button>
+
+    `;
+
+  }
+
+
+  memoryRound();
+
+}
+
+
+/* ============================================================
+   MATH RUSH
+============================================================ */
+
+function startMath() {
+
+  let seconds = 30;
+  let score = 0;
+  let solved = 0;
+  let correctAnswer = 0;
+
+
+  const content =
+    document.getElementById(
+      "gameContent"
+    );
+
+
+  content.innerHTML = `
+
+    <div
+      id="mathQuestion"
+      class="game-question"
+    ></div>
+
+    <input
+      class="math-input"
+      id="mathInput"
+      type="number"
+      placeholder="Твой ответ"
+    >
+
+    <div style="text-align:center">
+
+      <button
+        class="btn"
+        id="mathCheck"
+      >
+        Проверить
+      </button>
+
+    </div>
+
+  `;
+
+
+  document.getElementById(
+    "gameStatus"
+  ).textContent =
+    "MATH RUSH";
+
+
+  document.getElementById(
+    "gameTimer"
+  ).textContent =
+    "⏱ 30";
+
+
+  function newQuestion() {
+
+    const a =
+      Math.floor(
+        Math.random() * 12
+      ) + 2;
+
+    const b =
+      Math.floor(
+        Math.random() * 12
+      ) + 2;
+
+    const multiply =
+      Math.random() < .5;
+
+
+    correctAnswer =
+      multiply
+        ? a * b
+        : a + b;
+
+
+    document.getElementById(
+      "mathQuestion"
+    ).textContent =
+      `${a} ${multiply ? "×" : "+"} ${b} = ?`;
+
+
+    document.getElementById(
+      "mathInput"
+    ).value = "";
+
+
+    document.getElementById(
+      "mathInput"
+    ).focus();
+
+  }
+
+
+  function checkAnswer() {
+
+    if (seconds <= 0) {
+      return;
+    }
+
+
+    const input =
+      Number(
+        document.getElementById(
+          "mathInput"
+        ).value
+      );
+
+
+    if (
+      input ===
+      correctAnswer
+    ) {
+
+      score += 10;
+
+      document.getElementById(
+        "feedback"
+      ).textContent =
+        "⚡ Верно! +10";
+
+    } else {
+
+      document.getElementById(
+        "feedback"
+      ).textContent =
+        "Неверно. Следующий пример!";
+
+    }
+
+
+    solved++;
+
+    document.getElementById(
+      "gameScore"
+    ).textContent =
+      `Очки: ${score}`;
+
+
+    newQuestion();
+
+  }
+
+
+  document.getElementById(
+    "mathCheck"
+  ).onclick =
+    checkAnswer;
+
+
+  document.getElementById(
+    "mathInput"
+  ).addEventListener(
+    "keydown",
+    event => {
+
+      if (
+        event.key === "Enter"
+      ) {
+        checkAnswer();
+      }
+
+    }
+  );
+
+
+  newQuestion();
+
+
+  timer =
+    setInterval(
+      () => {
+
+        seconds--;
+
+        document.getElementById(
+          "gameTimer"
+        ).textContent =
+          `⏱ ${seconds}`;
+
+
+        if (seconds <= 0) {
+
+          clearInterval(timer);
+
+          addXP(score);
+
+          wins++;
+
+          savePlayer();
+          updatePlayer();
+
+
+          content.innerHTML = `
+
+            <div style="text-align:center">
+
+              <div style="font-size:65px">
+                ⚡
+              </div>
+
+              <h2>
+                Math Rush завершён!
+              </h2>
+
+              <p style="color:var(--muted)">
+                Решено примеров:
+                ${solved}
+              </p>
+
+              <h2 class="gradient">
+                +${score} XP
+              </h2>
+
+            </div>
+
+          `;
+
+
+          document.getElementById(
+            "gameStatus"
+          ).textContent =
+            "ВРЕМЯ ВЫШЛО";
+
+
+          document.getElementById(
+            "gameActions"
+          ).innerHTML = `
+
+            <button
+              class="btn"
+              onclick="startGame('math')"
+            >
+              Повторить ↻
+            </button>
+
+          `;
+
+        }
+
+      },
+      1000
+    );
+
+}
+
+
+/* ============================================================
+   SPEAKUP
+============================================================ */
+
+const speakQuestions = [
+
+  "What is your favorite subject at school?",
+
+  "What do you like to do after school?",
+
+  "Describe your best friend.",
+
+  "What would you like to learn in the future?",
+
+  "What is your favorite movie?"
+
+];
+
+let speakIndex = 0;
+
+
+function speakQuestion() {
+
+  if (
+    !("speechSynthesis" in window)
+  ) {
+
+    document.getElementById(
+      "speakStatus"
+    ).textContent =
+      "Озвучивание не поддерживается.";
+
+    return;
+  }
+
+
+  speechSynthesis.cancel();
+
+
+  const speech =
+    new SpeechSynthesisUtterance(
+      speakQuestions[speakIndex]
+    );
+
+  speech.lang =
+    "en-US";
+
+  speech.rate =
+    .85;
+
+  speechSynthesis.speak(
+    speech
+  );
+
+}
+
+
+function nextSpeakQuestion() {
+
+  speakIndex =
+    (speakIndex + 1) %
+    speakQuestions.length;
+
+
+  document.getElementById(
+    "speakQuestion"
+  ).textContent =
+    speakQuestions[speakIndex];
+
+
+  document.getElementById(
+    "speakAnswer"
+  ).textContent = "";
+
+
+  document.getElementById(
+    "speakStatus"
+  ).textContent =
+    "Нажми на микрофон и отвечай.";
+
+}
+
+
+function startSpeaking() {
+
+  const SpeechRecognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+
+  if (!SpeechRecognition) {
+
+    document.getElementById(
+      "speakStatus"
+    ).textContent =
+      "Голосовое распознавание не поддерживается. Попробуй Chrome или Edge.";
+
+    return;
+
+  }
+
+
+  const recognition =
+    new SpeechRecognition();
+
+  recognition.lang =
+    "en-US";
+
+  recognition.interimResults =
+    false;
+
+
+  const mic =
+    document.getElementById(
+      "mic"
+    );
+
+  mic.classList.add(
+    "listening"
+  );
+
+
+  document.getElementById(
+    "speakStatus"
+  ).textContent =
+    "🎙️ Listening... Speak in English!";
+
+
+  recognition.onresult =
+    event => {
+
+      const text =
+        event.results[0][0]
+          .transcript;
+
+
+      document.getElementById(
+        "speakAnswer"
+      ).textContent =
+        "You said: " + text;
+
+
+      document.getElementById(
+        "speakStatus"
+      ).textContent =
+        "Great job! 🌟";
+
+
+      completeMission(
+        "english"
+      );
+
+
+      if (
+        "speechSynthesis" in window
+      ) {
+
+        const response =
+          new SpeechSynthesisUtterance(
+            "Great job! Keep practicing."
+          );
+
+        response.lang =
+          "en-US";
+
+        speechSynthesis.speak(
+          response
+        );
+
+      }
+
+    };
+
+
+  recognition.onerror =
+    () => {
+
+      document.getElementById(
+        "speakStatus"
+      ).textContent =
+        "Не получилось распознать речь. Проверь микрофон.";
+
+    };
+
+
+  recognition.onend =
+    () => {
+
+      mic.classList.remove(
+        "listening"
+      );
+
+    };
+
+
+  try {
+
+    recognition.start();
+
+  } catch (error) {
+
+    mic.classList.remove(
+      "listening"
+    );
+
+  }
+
+}
+
+
+/* ============================================================
+   LANGUAGE
+============================================================ */
+
+const languageText = {
+
+  ru: [
+    "Модули",
+    "Teacher",
+    "SmartSchool",
+    "Arcade",
+    "SpeakUp"
+  ],
+
+  en: [
+    "Modules",
+    "Teacher",
+    "SmartSchool",
+    "Arcade",
+    "SpeakUp"
+  ],
+
+  uz: [
+    "Modullar",
+    "Ustoz",
+    "SmartSchool",
+    "Arcade",
+    "SpeakUp"
+  ]
+
+};
+
+
+document
+  .getElementById("language")
+  .addEventListener(
+    "change",
+    event => {
+
+      const text =
+        languageText[
+          event.target.value
+        ];
+
+      document.querySelectorAll(
+        "nav a"
+      ).forEach(
+        (link, index) => {
+
+          link.textContent =
+            text[index];
+
+        }
+      );
+
+    }
+  );
+
+</script>
+
+</body>
+</html>
